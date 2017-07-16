@@ -6,6 +6,7 @@
       @keyup.delete="deleteSelectedItem",
       @keydown.down="moveDown",
       @keydown.up="moveUp",
+      @keydown.right="moveSelectedItem"
       @blur="resetFocus"
       v-model="input")
     .items(@mouseleave="resetFocus()")
@@ -47,20 +48,26 @@ export default {
     deleteItem (item) {
       this.$store.dispatch('deleteShortListItem', item)
     },
+    deleteSelectedItem () {
+      if (this.focusedIndex !== -1) {
+        this.deleteItem(this.shortList[this.focusedIndex])
+        this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
+      }
+    },
     moveItem (item) {
       this.$store.dispatch('moveToGrassCatcher', item)
+    },
+    moveSelectedItem () {
+      if (this.focusedIndex !== -1) {
+        this.moveItem(this.shortList[this.focusedIndex])
+        this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
+      }
     },
     moveDown () {
       this.focusedIndex = Math.min(this.focusedIndex + 1, this.shortList.length - 1)
     },
     moveUp () {
       this.focusedIndex = Math.max(this.focusedIndex - 1, -1)
-    },
-    deleteSelectedItem () {
-      if (this.focusedIndex !== -1) {
-        this.deleteItem(this.shortList[this.focusedIndex])
-        this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
-      }
     },
     resetFocus () {
       this.focusedIndex = -1
