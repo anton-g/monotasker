@@ -8,21 +8,25 @@
       @keydown.up="moveUp",
       @blur="resetFocus"
       v-model="input")
-    short-list-item(
-      v-for="(item, index) in shortList",
-      :item="item",
-      :focus="focusedIndex === index"
-      @delete="deleteItem(item)",
-      @mouseenter.native="setFocus(item)")
+    .items(@mouseleave="resetFocus()")
+      short-list-item(
+        v-for="(item, index) in shortList",
+        :item="item",
+        :focus="focusedIndex === index"
+        @delete="deleteItem(item)",
+        @mouseenter.native="setFocus(item)")
+    shortcuts-modal
 </template>
 
 <script>
 import ShortListItem from '@/components/shortlist/ShortListItem'
+import ShortcutsModal from '@/components/shortcuts/ShortcutsModal'
 
 export default {
   name: 'shortlist',
   components: {
-    ShortListItem
+    ShortListItem,
+    ShortcutsModal
   },
   data () {
     return {
@@ -51,6 +55,7 @@ export default {
     deleteSelectedItem () {
       if (this.focusedIndex !== -1) {
         this.deleteItem(this.shortList[this.focusedIndex])
+        this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
       }
     },
     resetFocus () {
@@ -69,5 +74,5 @@ export default {
 </script>
 
 <style lang="scss">
-  
+
 </style>

@@ -27,6 +27,9 @@ export default {
     EventBus.$on('onEsc', () => {
       this.$store.dispatch('toggleGrassCatcher')
     })
+    EventBus.$on('onCtrlS', () => {
+      this.$store.dispatch('toggleShortcuts')
+    })
   },
   computed: {
     grassCatcherVisibility () {

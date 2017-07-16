@@ -16,10 +16,13 @@ new Vue({
   components: { App },
   mounted () {
     console.log('register keyevents')
-    window.addEventListener('keyup', (e) => {
-      if (event.keyCode === 27) {
+    window.addEventListener('keydown', (e) => {
+      e.preventDefault()
+      if (e.which === 27) {
         EventBus.$emit('onEsc')
+      } else if (e.which === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
+        EventBus.$emit('onCtrlS')
       }
-    })
+    }, false)
   }
 })

@@ -17,7 +17,8 @@ export default new Vuex.Store({
         text: 'my first item'
       }
     ],
-    grassCatcherVisibility: false
+    grassCatcherVisibility: false,
+    showShortcuts: true
   },
   mutations: {
     [types.SHORTLIST_ADD] (state, item) {
@@ -42,23 +43,42 @@ export default new Vuex.Store({
       if (index > -1) {
         state.grassCatcherList.splice(index, 1)
       }
+    },
+    [types.SHORTCUTS_SHOW] (state) {
+      state.showShortcuts = true
+    },
+    [types.SHORTCUTS_HIDE] (state) {
+      state.showShortcuts = false
     }
   },
   actions: {
-    addShortListItem ({ commit, state }, item) {
+    addShortListItem ({ commit }, item) {
       commit(types.SHORTLIST_ADD, item)
     },
-    deleteShortListItem ({ commit, state }, item) {
+    deleteShortListItem ({ commit }, item) {
       commit(types.SHORTLIST_DELETE, item)
     },
     toggleGrassCatcher ({ commit, state }) {
       commit(types.GRASSCATCHER_TOGGLE, !state.grassCatcherVisibility)
     },
-    addGrassCatcherListItem ({ commit, state }, item) {
+    addGrassCatcherListItem ({ commit }, item) {
       commit(types.GRASSCATCHER_ADD, item)
     },
-    deleteGrassCatcherListItem ({ commit, state }, item) {
+    deleteGrassCatcherListItem ({ commit }, item) {
       commit(types.GRASSCATCHER_DELETE, item)
+    },
+    showShortcuts ({ commit }) {
+      commit(types.SHORTCUTS_SHOW)
+    },
+    hideShortcuts ({ commit }) {
+      commit(types.SHORTCUTS_HIDE)
+    },
+    toggleShortcuts ({ commit, state }) {
+      if (state.showShortcuts) {
+        commit(types.SHORTCUTS_HIDE)
+      } else {
+        commit(types.SHORTCUTS_SHOW)
+      }
     }
   }
 })
