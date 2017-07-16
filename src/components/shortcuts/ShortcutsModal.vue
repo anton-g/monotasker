@@ -4,50 +4,71 @@
       .modal-background(@click="hideModal")
       .modal-content.box
         h1.title.has-text-centered Shortcuts
-        h2.title.is-4 Global
-        .level
-          .level-left
-            .level-item
-              key-icon(content="s")
-            .level-item
-              | Show shortcuts
-        .level
-          .level-left
-            .level-item
-              key-icon(content="h")
-            .level-item
-              | Show help
-        .level
-          .level-left
-            .level-item
-              key-icon(content="esc", :special="true")
-            .level-item
-              | Show grass catcher list
-        h2.title.is-4 Lists
-        .level
-          .level-left
-            .level-item
-              key-icon(content="enter", :special="true")
-            .level-item
-              | Add item
-        .level
-          .level-left
-            .level-item
-              key-icon(content="down", :special="true")
-            .level-item
-              | Move selection down
-        .level
-          .level-left
-            .level-item
-              key-icon(content="up", :special="true")
-            .level-item
-              | Move selection up
-        .level
-          .level-left
-            .level-item
-              key-icon(content="del", :special="true")
-            .level-item
-              | Delete selected item
+        .columns
+          .column
+            h2.title.is-4 Global
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="ctrl", :special="true")
+                  | +
+                  key-icon(content="i")
+                .level-item
+                  | Show info
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="ctrl", :special="true")
+                  | +
+                  key-icon(content="s")
+                .level-item
+                  | Show shortcuts
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="esc", :special="true")
+                .level-item
+                  | Show grass catcher list
+            h2.title.is-4 Short list
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="left", :special="true")
+                .level-item
+                  | Mark item complete
+          .column
+            h2.title.is-4 Short List and Grass Catcher
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="enter", :special="true")
+                .level-item
+                  | Add item
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="down", :special="true")
+                .level-item
+                  | Move selection down
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="up", :special="true")
+                .level-item
+                  | Move selection up
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="right", :special="true")
+                .level-item
+                  | Move item to other list
+            .level
+              .level-left
+                .level-item
+                  key-icon(content="del", :special="true")
+                .level-item
+                  | Delete selected item
+
 </template>
 
 <script>
