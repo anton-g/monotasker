@@ -14,6 +14,7 @@
         :item="item",
         :focus="focusedIndex === index"
         @delete="deleteItem(item)",
+        @move="moveItem(item)",
         @mouseenter.native="setFocus(item)")
     shortcuts-modal
 </template>
@@ -45,6 +46,9 @@ export default {
     },
     deleteItem (item) {
       this.$store.dispatch('deleteShortListItem', item)
+    },
+    moveItem (item) {
+      this.$store.dispatch('moveToGrassCatcher', item)
     },
     moveDown () {
       this.focusedIndex = Math.min(this.focusedIndex + 1, this.shortList.length - 1)

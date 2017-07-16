@@ -6,6 +6,9 @@
           | {{ this.item.text }}
       .level-right
         .level-item
+          a(@click="moveItem")
+            i.fa.fa-arrow-down
+        .level-item
           a.delete.is-medium(@click="deleteItem")
 
 </template>
@@ -20,6 +23,9 @@ export default {
   methods: {
     deleteItem () {
       this.$emit('delete')
+    },
+    moveItem () {
+      this.$emit('move')
     }
   }
 }

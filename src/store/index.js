@@ -18,7 +18,7 @@ export default new Vuex.Store({
       }
     ],
     grassCatcherVisibility: false,
-    showShortcuts: true
+    showShortcuts: false
   },
   mutations: {
     [types.SHORTLIST_ADD] (state, item) {
@@ -57,6 +57,10 @@ export default new Vuex.Store({
     },
     deleteShortListItem ({ commit }, item) {
       commit(types.SHORTLIST_DELETE, item)
+    },
+    moveToGrassCatcher ({ commit }, item) {
+      commit(types.SHORTLIST_DELETE, item)
+      commit(types.GRASSCATCHER_ADD, item)
     },
     toggleGrassCatcher ({ commit, state }) {
       commit(types.GRASSCATCHER_TOGGLE, !state.grassCatcherVisibility)
