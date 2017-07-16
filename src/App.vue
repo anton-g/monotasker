@@ -4,7 +4,8 @@
       .container
         .section
           short-list
-          grass-catcher-list(v-show="grassCatcherVisibility")
+          transition(name="fade")
+            grass-catcher-list(v-show="grassCatcherVisibility")
     mt-footer
 </template>
 
@@ -44,5 +45,13 @@ export default {
 
 main {
   flex: 1;  
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(120px);
 }
 </style>

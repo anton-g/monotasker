@@ -1,5 +1,5 @@
 <template lang="pug">
-  .short-list-item
+  .short-list-item(:class="{ 'is-selected': focus }")
     .level
       .level-left
         .level-item
@@ -14,7 +14,8 @@
 export default {
   name: 'shortlistitem',
   props: [
-    'item'
+    'item',
+    'focus'
   ],
   methods: {
     deleteItem () {
@@ -27,6 +28,10 @@ export default {
 <style lang="scss" scoped>
 .short-list-item {
   padding: 0.5rem;
+
+  &.is-selected {
+    background-color: red
+  }
 
   .level-right {
     visibility: hidden;

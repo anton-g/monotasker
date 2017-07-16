@@ -1,8 +1,19 @@
 <template lang="pug">
   .short-list
     h1.title.has-text-centered .short list
-    input.input(@keyup.enter="addItem", v-model="input")
-    short-list-item(v-for="item in shortList", :item="item", @delete="deleteItem(item)")
+    input.input(
+      @keyup.enter="addItem",
+      @keyup.delete="deleteSelectedItem",
+      @keydown.down="moveDown",
+      @keydown.up="moveUp",
+      @blur="resetFocus"
+      v-model="input")
+    short-list-item(
+      v-for="(item, index) in shortList",
+      :item="item",
+      :focus="focusedIndex === index"
+      @delete="deleteItem(item)",
+      @mouseenter.native="setFocus(item)")
 </template>
 
 <script>
@@ -15,7 +26,8 @@ export default {
   },
   data () {
     return {
-      input: ''
+      input: '',
+      focusedIndex: -1
     }
   },
   methods: {
@@ -29,6 +41,23 @@ export default {
     },
     deleteItem (item) {
       this.$store.dispatch('deleteShortListItem', item)
+    },
+    moveDown () {
+      this.focusedIndex = Math.min(this.focusedIndex + 1, this.shortList.length - 1)
+    },
+    moveUp () {
+      this.focusedIndex = Math.max(this.focusedIndex - 1, -1)
+    },
+    deleteSelectedItem () {
+      if (this.focusedIndex !== -1) {
+        this.deleteItem(this.shortList[this.focusedIndex])
+      }
+    },
+    resetFocus () {
+      this.focusedIndex = -1
+    },
+    setFocus (item) {
+      this.focusedIndex = this.shortList.indexOf(item)
     }
   },
   computed: {

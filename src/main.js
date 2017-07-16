@@ -15,6 +15,7 @@ new Vue({
   template: '<App/>',
   components: { App },
   mounted () {
+    console.log('register keyevents')
     window.addEventListener('keyup', (e) => {
       if (event.keyCode === 27) {
         EventBus.$emit('onEsc')
