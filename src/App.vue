@@ -12,7 +12,7 @@
 <script>
 import EventBus from '@/utils/EventBus'
 
-import MtFooter from '@/components/Footer'
+import MtFooter from '@/components/layout/Footer'
 import ShortList from '@/components/shortlist/ShortList'
 import GrassCatcherList from '@/components/grasscatcher/GrassCatcherList'
 
