@@ -2,10 +2,11 @@
   #app
     main
       .container
-        .section
-          short-list
-          transition(name="fade")
-            grass-catcher-list(v-show="grassCatcherVisibility")
+        .columns
+          .column.is-half.is-offset-one-quarter
+            short-list
+            transition(name="slideIn")
+              grass-catcher-list(v-show="grassCatcherVisibility")
     mt-footer
 </template>
 
@@ -39,7 +40,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   display: flex;
   min-height: 100vh;
@@ -50,10 +51,10 @@ main {
   flex: 1;  
 }
 
-.fade-enter-active, .fade-leave-active {
+.slideIn-enter-active, .slideIn-leave-active {
   transition: all .2s;
 }
-.fade-enter, .fade-leave-to {
+.slideIn-enter, .slideIn-leave-to {
   opacity: 0;
   transform: translateY(120px);
 }

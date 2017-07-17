@@ -4,7 +4,7 @@
       .column.is-half.is-offset-one-quarter
         h1.title.is-3
           span.icon
-            i.fa.fa-long-arrow-right
+            i.fa.fa-random
           | monotasker
           span.icon
             i.fa.fa-long-arrow-right

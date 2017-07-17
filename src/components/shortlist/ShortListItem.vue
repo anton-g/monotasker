@@ -2,15 +2,15 @@
   .short-list-item(:class="{ 'is-selected': focus }")
     .level
       .level-left
-        .level-item
+        .level-item.content
           | {{ this.item.text }}
       .level-right
         .level-item
-          a(@click="moveItem")
-            i.fa.fa-arrow-down
+          a.move-button(@click="moveItem")
+            span.icon
+              i.fa.fa-long-arrow-down
         .level-item
           a.delete.is-medium(@click="deleteItem")
-
 </template>
 
 <script>
@@ -32,11 +32,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/assets/scss/colors.scss";
+
 .short-list-item {
   padding: 0.5rem;
+  
+  .content {
+    font-size: 1.7rem;
+  }
+  
+  .move-button {
+    color: rgba($black, 0.3);
+
+    &:hover {
+      color: rgba($black, 0.5);
+    }
+  }
 
   &.is-selected {
-    background-color: red
+    background-color: $primary;
   }
 
   .level-right {

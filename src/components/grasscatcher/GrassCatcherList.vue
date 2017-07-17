@@ -1,5 +1,5 @@
 <template lang="pug">
-  .grass-catcher-list
+  .section.grass-catcher-list
     h1.title.has-text-centered .grass catcher list
     input.input(@keyup.enter="addItem", v-model="input")
     grass-catcher-list-item(v-for="item in grassCatcherList", :item="item", @delete="deleteItem(item)")

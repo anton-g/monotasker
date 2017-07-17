@@ -1,14 +1,19 @@
 <template lang="pug">
-  .short-list
-    h1.title.has-text-centered .short list
-    input.input(
-      @keyup.enter="addItem",
-      @keyup.delete="deleteSelectedItem",
-      @keydown.down="moveDown",
-      @keydown.up="moveUp",
-      @keydown.right="moveSelectedItem"
-      @blur="resetFocus"
-      v-model="input")
+  .section.short-list
+    h1.title.has-text-centered Short List
+    .field.has-addons
+      .control.is-expanded
+        input.input.is-medium(
+          @keyup.enter="addItem",
+          @keyup.delete="deleteSelectedItem",
+          @keydown.down="moveDown",
+          @keydown.up="moveUp",
+          @keydown.right="moveSelectedItem",
+          @blur="resetFocus",
+          v-model="input",
+          placeholder="What's most importand right now?")
+      .control
+        a.button.is-medium Add
     .items(@mouseleave="resetFocus()")
       short-list-item(
         v-for="(item, index) in shortList",
@@ -85,5 +90,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+.short-list {
+  .field {
+    margin-bottom: 0;
+  }
+}
 </style>
