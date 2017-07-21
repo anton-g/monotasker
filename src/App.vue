@@ -31,6 +31,9 @@ export default {
     EventBus.$on('onCtrlS', () => {
       this.$store.dispatch('toggleShortcuts')
     })
+    EventBus.$on('onCtrlI', () => {
+      this.$store.dispatch('toggleInfo')
+    })
   },
   computed: {
     grassCatcherVisibility () {

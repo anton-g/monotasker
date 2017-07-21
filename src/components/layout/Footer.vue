@@ -16,23 +16,32 @@
           a anton-g
       .column
         .menu
-          a(@click="showHelp")
+          a(@click="showInfo")
             span.icon.is-medium
               i.fa.fa-info
           a(@click="showShortcuts")
             span.icon.is-medium
               i.fa.fa-keyboard-o
+      shortcuts-modal
+      info-modal
 </template>
 
 <script>
+import ShortcutsModal from '@/components/shortcuts/ShortcutsModal'
+import InfoModal from '@/components/info/InfoModal'
+
 export default {
   name: 'footer',
+  components: {
+    ShortcutsModal,
+    InfoModal
+  },
   methods: {
     showShortcuts () {
       this.$store.dispatch('showShortcuts')
     },
     showInfo () {
-      this.$store.dispatch('showHelp')
+      this.$store.dispatch('showInfo')
     }
   }
 }

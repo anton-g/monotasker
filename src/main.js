@@ -23,6 +23,9 @@ new Vue({
       } else if (e.which === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
         e.preventDefault()
         EventBus.$emit('onCtrlS')
+      } else if (e.which === 73 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
+        e.preventDefault()
+        EventBus.$emit('onCtrlI')
       }
     }, false)
   }

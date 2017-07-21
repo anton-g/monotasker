@@ -7,18 +7,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    shortList: [
-      {
-        text: 'my first item'
-      }
-    ],
-    grassCatcherList: [
-      {
-        text: 'my first item'
-      }
-    ],
+    shortList: [],
+    grassCatcherList: [],
     grassCatcherVisibility: false,
-    showShortcuts: false
+    showShortcuts: false,
+    showInfo: false
   },
   mutations: {
     [types.SHORTLIST_ADD] (state, item) {
@@ -49,6 +42,12 @@ export default new Vuex.Store({
     },
     [types.SHORTCUTS_HIDE] (state) {
       state.showShortcuts = false
+    },
+    [types.INFO_SHOW] (state) {
+      state.showInfo = true
+    },
+    [types.INFO_HIDE] (state) {
+      state.showInfo = false
     }
   },
   actions: {
@@ -78,11 +77,18 @@ export default new Vuex.Store({
       commit(types.SHORTCUTS_HIDE)
     },
     toggleShortcuts ({ commit, state }) {
-      if (state.showShortcuts) {
-        commit(types.SHORTCUTS_HIDE)
-      } else {
-        commit(types.SHORTCUTS_SHOW)
-      }
+      const mutation = state.showShortcuts ? types.SHORTCUTS_HIDE : types.SHORTCUTS_SHOW
+      commit(mutation)
+    },
+    showInfo ({ commit }) {
+      commit(types.INFO_SHOW)
+    },
+    hideInfo ({ commit }) {
+      commit(types.INFO_HIDE)
+    },
+    toggleInfo ({ commit, state }) {
+      const mutation = state.showInfo ? types.INFO_HIDE : types.INFO_SHOW
+      commit(mutation)
     }
   }
 })

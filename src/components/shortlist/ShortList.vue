@@ -22,18 +22,15 @@
         @delete="deleteItem(item)",
         @move="moveItem(item)",
         @mouseenter.native="setFocus(item)")
-    shortcuts-modal
 </template>
 
 <script>
 import ShortListItem from '@/components/shortlist/ShortListItem'
-import ShortcutsModal from '@/components/shortcuts/ShortcutsModal'
 
 export default {
   name: 'shortlist',
   components: {
-    ShortListItem,
-    ShortcutsModal
+    ShortListItem
   },
   data () {
     return {

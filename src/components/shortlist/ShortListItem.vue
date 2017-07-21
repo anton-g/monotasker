@@ -1,9 +1,11 @@
 <template lang="pug">
-  .short-list-item(:class="{ 'is-selected': focus }")
+  .short-list-item(:class="{ 'is-selected': focus }", @dblclick="enableEditing")
     .level
       .level-left
         .level-item.content
-          | {{ this.item.text }}
+          span(:class="{ 'is-hidden': isEditing }") {{ this.item.text }}
+          span(:class="{ 'is-hidden': !isEditing }")
+            input.input(:value="this.item.text", @blur="editItem", @click.enter="")
       .level-right
         .level-item
           a.move-button(@click="moveItem")
@@ -18,7 +20,8 @@ export default {
   name: 'shortlistitem',
   props: [
     'item',
-    'focus'
+    'focus',
+    'isEditing'
   ],
   methods: {
     deleteItem () {
@@ -26,6 +29,17 @@ export default {
     },
     moveItem () {
       this.$emit('move')
+    },
+    enableEditing () {
+      this.isEditing = true
+    },
+    editItem () {
+      this.$emit('edit')
+    }
+  },
+  computed: {
+    editText () {
+      return this.item.text
     }
   }
 }
