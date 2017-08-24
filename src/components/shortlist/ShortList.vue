@@ -5,11 +5,13 @@
       .control.is-expanded
         input.input.is-medium(
           @keyup.enter="addItem",
-          @keyup.delete="deleteSelectedItem",
-          @keydown.down="moveDown",
-          @keydown.up="moveUp",
-          @keydown.right="moveSelectedItem",
+          @keyup.delete.prevent="deleteSelectedItem",
+          @keydown.down.prevent="moveDown",
+          @keydown.up.prevent="moveUp",
+          @keydown.right.prevent="moveSelectedItem",
           @blur="resetFocus",
+          @input="resetFocus",
+          :focus="focusedIndex === -1",
           v-model="input",
           placeholder="What's most importand right now?")
       .control
