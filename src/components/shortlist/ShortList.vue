@@ -9,6 +9,7 @@
           @keydown.down.prevent="moveDown",
           @keydown.up.prevent="moveUp",
           @keydown.right.prevent="moveSelectedItem",
+          @keydown.left.prevent="completeSelectedItem",
           @blur="resetFocus",
           @input="resetFocus",
           :focus="focusedIndex === -1",
@@ -23,6 +24,7 @@
         :focus="focusedIndex === index"
         @delete="deleteItem(item)",
         @move="moveItem(item)",
+        @complete="completeItem(item)",
         @mouseenter.native="setFocus(item)")
 </template>
 
@@ -64,6 +66,15 @@ export default {
     moveSelectedItem () {
       if (this.focusedIndex !== -1) {
         this.moveItem(this.shortList[this.focusedIndex])
+        this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
+      }
+    },
+    completeItem (item) {
+      this.$store.dispatch('completeShortListItem', item)
+    },
+    completeSelectedItem () {
+      if (this.focusedIndex !== -1) {
+        this.completeItem(this.shortList[this.focusedIndex])
         this.focusedIndex = Math.min(this.focusedIndex, this.shortList.length - 1)
       }
     },

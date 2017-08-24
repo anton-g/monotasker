@@ -8,7 +8,11 @@
             input.input(:value="this.item.text", @blur="editItem", @click.enter="")
       .level-right
         .level-item
-          a.move-button(@click="moveItem")
+          a.action-icon(@click="completeItem")
+            span.icon
+              i.fa.fa-check
+        .level-item
+          a.action-icon(@click="moveItem")
             span.icon
               i.fa.fa-long-arrow-down
         .level-item
@@ -29,6 +33,9 @@ export default {
     },
     moveItem () {
       this.$emit('move')
+    },
+    completeItem () {
+      this.$emit('complete')
     },
     enableEditing () {
       this.isEditing = true
@@ -55,7 +62,7 @@ export default {
     font-size: 1.7rem;
   }
   
-  .move-button {
+  .action-icon {
     color: rgba($black, 0.3);
 
     &:hover {

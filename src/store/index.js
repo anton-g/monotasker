@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shortList: [],
+    completed: [],
     grassCatcherList: [],
     grassCatcherVisibility: false,
     showShortcuts: false,
@@ -23,6 +24,13 @@ export default new Vuex.Store({
       var index = state.shortList.indexOf(item)
       if (index > -1) {
         state.shortList.splice(index, 1)
+      }
+    },
+    [types.SHORTLIST_COMPLETE] (state, item) {
+      var index = state.shortList.indexOf(item)
+      if (index > -1) {
+        state.shortList.splice(index, 1)
+        state.completed.push(item)
       }
     },
     [types.GRASSCATCHER_TOGGLE] (state, visibility) {
@@ -56,6 +64,9 @@ export default new Vuex.Store({
     },
     deleteShortListItem ({ commit }, item) {
       commit(types.SHORTLIST_DELETE, item)
+    },
+    completeShortListItem ({ commit }, item) {
+      commit(types.SHORTLIST_COMPLETE, item)
     },
     moveToGrassCatcher ({ commit }, item) {
       commit(types.SHORTLIST_DELETE, item)
