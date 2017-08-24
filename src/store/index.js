@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 import * as types from './mutation-types'
 
 Vue.use(Vuex)
-
+console.log(createPersistedState)
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     shortList: [],
     completed: [],
